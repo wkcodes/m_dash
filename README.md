@@ -1,20 +1,7 @@
 # m_dash
 
-## Build Setup
+A dashboard that allows the user to search a list of movies, favorite a movie, and create a favorites list. 
 
-```bash
-# install dependencies
-$ npm install
+## Technical
 
-# serve with hot reload at localhost:3000
-$ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm run start
-
-# generate static project
-$ npm run generate
-```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+A server-side rendered, static site, generated with Nuxt.js 
