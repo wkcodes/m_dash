@@ -3,7 +3,7 @@
     <h1>{{ this.retrievedTitle || "Click a movie" }}</h1>
     <img :src="`${this.retrievedArt}`" alt="" />
     <h2>Rating: {{ this.retrievedRating }}</h2>
-    <h2>Clcik ford summary</h2>
+    <button class="summary-button">Click for summary</button>
   </div>
 </template>
 
@@ -74,5 +74,10 @@ export default {
 img {
   height: 400px;
   width: 300px;
+}
+.summary-button {
+  border: solid;
+  border-radius: 5px;
+  padding: 3px;
 }
 </style>
