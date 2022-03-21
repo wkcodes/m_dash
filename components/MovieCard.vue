@@ -1,10 +1,9 @@
 <template>
-  <div>
-    <img src="../assets/The-Third-Man.jpg" alt="" />
+  <div id="movie-container">
     <h1>Title</h1>
+    <img src="../assets/The-Third-Man.jpg" alt="" />
     <h2>Rating</h2>
-    <p>Summary</p>
-    <v-card elevation="2" class="mx-auto my-12" max-width="374">Movie</v-card>
+    <p>Summary blbobb blbobo bobob</p>
   </div>
 </template>
 
@@ -12,4 +11,11 @@
 </script>
 
 <style>
+#movie-container {
+  border: solid;
+  border-width: 7px;
+  border-radius: 5px;
+  padding: 5px;
+  height: fit-content;
+}
 </style>

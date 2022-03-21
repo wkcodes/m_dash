@@ -7,7 +7,7 @@
     </header>
     <div class="row">
       <List :top250="this.listData" />
-      <img src="../assets/The-Third-Man.jpg" />
+      <MovieCard />
     </div>
   </div>
 </template>
@@ -27,6 +27,7 @@ import List from "../components/List.vue";
 export default {
   components: {
     List,
+    MovieCard,
   },
   data() {
     return {
@@ -76,10 +77,10 @@ export default {
   list-style-type: none;
 }
 #app-wrapper {
-  background-color: violet;
 }
 header {
   padding-bottom: 10px;
+  margin-bottom: 10px;
   text-align: center;
 }
 </style>

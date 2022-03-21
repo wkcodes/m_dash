@@ -1,13 +1,30 @@
 <template>
-  <div id="container" class="list-group">
+  <div id="list-container" class="list-group">
     <h2>The Top 250</h2>
+    <h3>IMDB's list of the top 250 films in history</h3>
     <!--if faves, change line 7 to faves, line 9 etc-->
-    <p>IMDB's list of the top 250 films in history</p>
-    <p>Click the star to favorite a movie</p>
-    <br />
+    <ul class="list-header">
+      <li>About the list:</li>
+      <li>- Click a movie to display more info</li>
+      <li>- Click the star to favorite a movie</li>
+      <li>- Toggle top 250/faves</li>
+    </ul>
+    <form @submit="onSubmitSearch">
+      <input
+        class="search-controls"
+        v-model="searchInput"
+        placeholder="Enter movie title"
+      />
+      <input class="search-controls" type="submit" value="Search" />
+      <button class="search-controls">Clear</button>
+    </form>
     <ul>
-      <li v-for="movie in top250" :key="movie">
-        <button @click="movieClick(movie)">{{ movie }}</button>
+      <li v-if="!isFiltered" v-for="movie in top250" :key="movie">
+        <button @click="showMovie(movie)">{{ movie }}</button>
+        <button class="favorite" @click="favorite(movie)">⭐</button>
+      </li>
+      <li v-if="isFiltered" v-for="movie in filteredList">
+        <button @click="showMovie(movie)">{{ movie }}</button>
         <button class="favorite" @click="favorite(movie)">⭐</button>
       </li>
     </ul>
@@ -30,26 +47,40 @@ export default {
   },
   data() {
     return {
-      search_input: null,
+      searchInput: null,
+      filteredList: null,
+      isFiltered: false,
+      searchResult: null,
       faves: [],
     };
   },
-
   mounted() {
     console.log("List mounted");
     // use movie list to populate meta data for seo
   },
   methods: {
-    onSubmit(e) {
+    onSubmitSearch(e) {
       e.preventDefault();
-      console.log(this.search_input);
-      this.search();
+      console.log(this.searchInput);
+      this.filteredList = this.top250.filter(
+        (item) => item == this.searchInput
+      );
+      console.log(this.filteredList);
+      this.isFiltered = true;
     },
-    search() {
-      //search the list
+    showMovie() {
+      console.log("show movie clicked");
+      axios
+        .get(
+          `https://imdb-api.com/en/API/Search/k_2uhdy54b/${this.searchInput}`
+        )
+        .then((response) => {
+          console.log(response);
+          this.showMovieHandler;
+        });
     },
-    movieClick() {
-      console.log("clicked movie");
+    showMovieHandler() {
+      console.log("hello from the handler");
     },
     favorite(movie) {
       // adds an element to the top of the list
@@ -64,20 +95,28 @@ export default {
 </script>
 
 <style>
-#container {
+#list-container {
   overflow-y: scroll;
   max-height: 80vh;
   max-width: 50vw;
-  margin: 10px;
   border-style: solid;
   border-width: 7px;
   border-radius: 10px;
   padding: 10px;
   margin-left: 5vw;
+  margin-right: 10px;
 }
-input {
-  border-style: dashed;
-  border-color: tomato;
+#search {
+  padding: 5px;
+}
+.list-header {
+  padding: 5px;
+}
+.search-controls {
+  border-style: solid;
+  border-color: black;
+  border-radius: 5px;
+  padding: 3px;
 }
 .favorite {
   color: orange;
