@@ -4,10 +4,20 @@
       <input v-model="search_input" placeholder="Search movies" />
       <input type="submit" value="Search" />
     </form>
+    <h2>The Top 250</h2>
+    <!--if faves, change line 7 to faves, line 9 etc-->
+    <p>IMDB's list of the top 250 films in history</p>
+    <br />
     <ul>
-      <li v-for="movie in movies" :key="movie.title">
-        {{ movie.title }}
-        <button @click="favorite(movie)">Favorite</button>
+      <li v-for="movie in top250" :key="movie">
+        {{ movie }}
+        <button class="favorite" @click="favorite(movie)">Favorite</button>
+      </li>
+    </ul>
+    <h2>My Faves</h2>
+    <ul>
+      <li v-for="fave in faves" :key="fave">
+        {{ fave }}
       </li>
     </ul>
   </div>
@@ -18,24 +28,17 @@
 <script>
 import axios from "axios";
 export default {
-  // api key: k_2uhdy54b
+  props: {
+    top250: Array,
+  },
   data() {
     return {
       search_input: null,
-      movies: [
-        {
-          title: "The Shawshank Redemption",
-          title: "Titanictic",
-          title: "Schindler's List",
-        },
-      ],
-      favorites: [],
+      faves: [],
     };
   },
+
   mounted() {
-    axios;
-    //.get("https://imdb-api.com/en/API/Search/k_2uhdy54b/inception 2010")
-    //.then((response) => console.log(response));
     console.log("List mounted");
     // use movie list to populate meta data for seo
   },
@@ -43,22 +46,29 @@ export default {
     onSubmit(e) {
       e.preventDefault();
       console.log(this.search_input);
-      this.queryAPI();
+      this.search();
     },
-    queryAPI() {
-      let search = this.search_input;
-      console.log("hello from the query" + search);
+    search() {
+      //search the list
     },
     favorite(movie) {
-      this.favorites.push(movie);
-      console.log("Favorites :" + toString(this.favorites));
+      // adds an element to the top of the list
+      this.top250.unshift(movie);
+      this.faves.push(movie);
+      console.log("Favorite button clicked!");
+      // add control to prevent duplicate faves
     },
   },
+  // for description, check if exists, if not call search api
 };
 </script>
 
 <style>
 input {
-  background-color: white;
+  border-style: dashed;
+  border-color: tomato;
+}
+.favorite {
+  color: orange;
 }
 </style>
