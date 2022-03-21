@@ -1,9 +1,14 @@
 <template>
-  <div>
+  <div id="app-wrapper">
     <!--Make this into header component-->
-    <h1>M-Dash</h1>
-    <p>The movie dashboard</p>
-    <List :top250="this.listData" />
+    <header>
+      <h1>M-Dash</h1>
+      <p>The movie dashboard</p>
+    </header>
+    <div class="row">
+      <List :top250="this.listData" />
+      <img src="../assets/The-Third-Man.jpg" />
+    </div>
   </div>
 </template>
 
@@ -15,6 +20,7 @@
 */
 // libraries etc.
 import axios from "axios";
+import BootstrapVue from "bootstrap-vue/dist/bootstrap-vue.esm";
 // components
 import MovieCard from "../components/MovieCard.vue";
 import List from "../components/List.vue";
@@ -67,6 +73,13 @@ export default {
 
 <style>
 * {
+  list-style-type: none;
+}
+#app-wrapper {
+  background-color: violet;
+}
+header {
+  padding-bottom: 10px;
   text-align: center;
 }
 </style>
