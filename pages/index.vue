@@ -1,16 +1,19 @@
 <template>
-  <div id="app-wrapper">
-    <!--Make this into header component-->
+  <div>
     <header>
       <h1>M-Dash</h1>
       <p>The movie dashboard</p>
     </header>
-    <div class="row">
-      <List
-        :top250="this.listData"
-        @clickEvent="(msg) => (clickedMovie = msg)"
-      />
-      <MovieCard :movie="clickedMovie" />
+    <div id="app-wrapper" class="center-block">
+      <!--Make this into header component-->
+
+      <div class="row">
+        <List
+          :top250="this.listData"
+          @clickEvent="(msg) => (clickedMovie = msg)"
+        />
+        <MovieCard :movie="clickedMovie" />
+      </div>
     </div>
   </div>
 </template>
@@ -81,6 +84,10 @@ export default {
   list-style-type: none;
 }
 #app-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-left: 20vw;
 }
 header {
   padding-bottom: 10px;
