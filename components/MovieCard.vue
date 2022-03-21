@@ -1,13 +1,65 @@
 <template>
   <div id="movie-container">
-    <h1>Title</h1>
-    <img src="../assets/The-Third-Man.jpg" alt="" />
-    <h2>Rating</h2>
-    <p>Summary blbobb blbobo bobob</p>
+    <h1>{{ this.retrievedTitle || "Click a movie" }}</h1>
+    <img :src="`${this.retrievedArt}`" alt="" />
+    <h2>Rating: {{ this.retrievedRating }}</h2>
+    <h2>Clcik ford summary</h2>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+export default {
+  props: {
+    movie: "",
+  },
+  data() {
+    return {
+      dataFromList: "",
+      retrievedTitle: null,
+      retrievedArt: null,
+      retrievedRating: null,
+      retrievedSummary: null,
+      movieId: null,
+    };
+  },
+  watch: {
+    movie: function () {
+      console.log(this.movie);
+      this.fetchMovieDate();
+    },
+  },
+  methods: {
+    fetchMovieDate() {
+      axios
+        .get(`https://imdb-api.com/en/API/Search/k_2uhdy54b/${this.movie}`)
+        .then((response) => {
+          console.log(response);
+          this.retrievedTitle = response.data.results[0].title;
+          this.retrievedArt = response.data.results[0].image;
+          console.log("fetching id///");
+          console.log(this.retrievedTitle);
+          console.log(localStorage.getItem(localStorage.key(3)));
+          for (let i = 0; i < localStorage.length; i++) {
+            if (
+              localStorage.getItem(localStorage.key(i)) == this.retrievedTitle
+            ) {
+              console.log("movie found at: " + i);
+              this.movieId = localStorage.key(i);
+            }
+          }
+          axios
+            .get(
+              `https://imdb-api.com/en/API/Ratings/k_2uhdy54b/${this.movieId}`
+            )
+            .then((response) => {
+              console.log(response);
+              this.retrievedRating = response.data.imDb;
+            });
+        });
+    },
+  },
+};
 </script>
 
 <style>
@@ -15,7 +67,12 @@
   border: solid;
   border-width: 7px;
   border-radius: 5px;
-  padding: 5px;
-  height: fit-content;
+  padding: 10px;
+  max-width: 350px;
+  max-height: 900px;
+}
+img {
+  height: 400px;
+  width: 300px;
 }
 </style>

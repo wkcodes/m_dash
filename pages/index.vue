@@ -6,8 +6,11 @@
       <p>The movie dashboard</p>
     </header>
     <div class="row">
-      <List :top250="this.listData" />
-      <MovieCard />
+      <List
+        :top250="this.listData"
+        @clickEvent="(msg) => (clickedMovie = msg)"
+      />
+      <MovieCard :movie="clickedMovie" />
     </div>
   </div>
 </template>
@@ -33,6 +36,7 @@ export default {
     return {
       rawData: [],
       listData: [],
+      clickedMovie: null,
     };
   },
   mounted() {

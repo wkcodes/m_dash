@@ -9,15 +9,19 @@
       <li>- Click the star to favorite a movie</li>
       <li>- Toggle top 250/faves</li>
     </ul>
-    <form @submit="onSubmitSearch">
-      <input
-        class="search-controls"
-        v-model="searchInput"
-        placeholder="Enter movie title"
-      />
-      <input class="search-controls" type="submit" value="Search" />
-      <button class="search-controls">Clear</button>
-    </form>
+    <div>
+      <form @submit="onSubmitSearch">
+        <input
+          class="search-controls"
+          v-model="searchInput"
+          placeholder="Enter movie title"
+        />
+        <input class="search-controls" type="submit" value="Search" />
+      </form>
+      <button @click="clear()" id="clear-button" class="search-controls">
+        Clear
+      </button>
+    </div>
     <ul>
       <li v-if="!isFiltered" v-for="movie in top250" :key="movie">
         <button @click="showMovie(movie)">{{ movie }}</button>
@@ -45,12 +49,14 @@ export default {
   props: {
     top250: Array,
   },
+  emits: ["clickEvent"],
   data() {
     return {
       searchInput: null,
       filteredList: null,
       isFiltered: false,
       searchResult: null,
+      clickedMovie: null,
       faves: [],
     };
   },
@@ -68,19 +74,11 @@ export default {
       console.log(this.filteredList);
       this.isFiltered = true;
     },
-    showMovie() {
+    showMovie(movie) {
       console.log("show movie clicked");
-      axios
-        .get(
-          `https://imdb-api.com/en/API/Search/k_2uhdy54b/${this.searchInput}`
-        )
-        .then((response) => {
-          console.log(response);
-          this.showMovieHandler;
-        });
-    },
-    showMovieHandler() {
-      console.log("hello from the handler");
+      this.clickedMovie = movie;
+      console.log(this.clickedMovie);
+      this.$emit("clickEvent", this.clickedMovie);
     },
     favorite(movie) {
       // adds an element to the top of the list
@@ -88,6 +86,9 @@ export default {
       this.faves.push(movie);
       console.log("Favorite button clicked!");
       // add control to prevent duplicate faves
+    },
+    clear() {
+      this.isFiltered = false;
     },
   },
   // for description, check if exists, if not call search api
@@ -108,6 +109,9 @@ export default {
 }
 #search {
   padding: 5px;
+}
+#clear-button {
+  float: right;
 }
 .list-header {
   padding: 5px;
