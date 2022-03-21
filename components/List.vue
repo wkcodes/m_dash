@@ -1,9 +1,5 @@
 <template>
   <div>
-    <form @submit="onSubmit">
-      <input v-model="search_input" placeholder="Search movies" />
-      <input type="submit" value="Search" />
-    </form>
     <h2>The Top 250</h2>
     <!--if faves, change line 7 to faves, line 9 etc-->
     <p>IMDB's list of the top 250 films in history</p>
