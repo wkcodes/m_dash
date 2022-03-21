@@ -20,7 +20,7 @@
   </div>
 </template>
 
-<!--on search, first js function runs to check cache to see if movie title is found, if not, query the api-->
+<!--on search, first js function runs to check cache to see if movie title is found, if not, query the api, test-->
 
 <script>
 import axios from "axios";
