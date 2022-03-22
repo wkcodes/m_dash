@@ -51,10 +51,10 @@
       </button>
     </div>
     <ul>
-      <li v-if="!isFiltered" v-for="movie in top250" :key="movie">
+      <li v-if="!isFiltered" v-for="(movie, index) in top250" :key="movie">
         <!--if found in favorites, switch to solid star-->
         <button @click="showMovie(movie)">{{ movie }}</button>
-        <button class="favorite" @click="favorite(movie)">☆</button>
+        <button class="favorite" @click="favorite(movie, index)">☆</button>
       </li>
       <!--add a way to search favorites-->
       <li v-if="isFiltered && picked == 'top250'" v-for="movie in filteredList">
@@ -90,6 +90,7 @@ export default {
       searchClicked: false,
       showFavorites: false,
       picked: "top250",
+      favoriteIndex: null,
     };
   },
   mounted() {
@@ -113,11 +114,14 @@ export default {
       console.log(this.clickedMovie);
       this.$emit("clickEvent", this.clickedMovie);
     },
-    favorite(movie) {
+    favorite(movie, index) {
       // adds an element to the top of the list
-      this.top250.unshift(movie);
+      let element = this.top250[index];
+      this.top250.splice(index, 1);
+      this.top250.splice(0, 1, element);
       this.faves.push(movie);
       console.log("Favorite button clicked!");
+      console.log("favorited index is: " + index);
       // add control to prevent duplicate faves
     },
     clear() {
