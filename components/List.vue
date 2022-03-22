@@ -18,8 +18,13 @@
         />
         <input class="search-controls" type="submit" value="Search" />
       </form>
-      <button @click="clear()" id="clear-button" class="search-controls">
-        Clear
+      <button
+        v-if="searchClicked"
+        @click="clear()"
+        id="clear-button"
+        class="search-controls"
+      >
+        Clear Search
       </button>
     </div>
     <ul>
@@ -58,6 +63,7 @@ export default {
       searchResult: null,
       clickedMovie: null,
       faves: [],
+      searchClicked: false,
     };
   },
   mounted() {
@@ -73,6 +79,7 @@ export default {
       );
       console.log(this.filteredList);
       this.isFiltered = true;
+      this.searchClicked = true;
     },
     showMovie(movie) {
       console.log("show movie clicked");
@@ -89,6 +96,7 @@ export default {
     },
     clear() {
       this.isFiltered = false;
+      this.searchClicked = false;
     },
   },
   // for description, check if exists, if not call search api
@@ -98,18 +106,20 @@ export default {
 <style>
 #list-container {
   overflow-y: scroll;
+  white-space: nowrap;
   max-height: 80vh;
   max-width: 40vw;
   border-style: solid;
   border-width: 7px;
   border-radius: 10px;
   padding: 10px;
+  text-align: center;
 }
 #search {
   padding: 5px;
 }
 #clear-button {
-  float: right;
+  display: inline-block;
 }
 .list-header {
   padding: 5px;
