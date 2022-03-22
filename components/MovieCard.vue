@@ -1,6 +1,8 @@
 <template>
   <div id="movie-container">
-    <h1 class="cardItem">{{ this.retrievedTitle || "No movie selected" }}</h1>
+    <h1 id="cardHeader" class="cardItem">
+      {{ this.retrievedTitle || "No movie selected" }}
+    </h1>
     <img
       v-if="this.retrievedArt"
       class="cardItem"
@@ -80,6 +82,9 @@ export default {
   padding: 10px;
   max-width: 350px;
   max-height: 900px;
+}
+#cardHeader {
+  margin: 0.5rem 0 1rem 0;
 }
 img {
   height: 400px;

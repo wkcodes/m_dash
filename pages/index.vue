@@ -15,6 +15,7 @@
         <MovieCard :movie="clickedMovie" />
       </div>
     </div>
+    <footer>Made with ♡ by WKCODES 2022</footer>
   </div>
 </template>
 
@@ -88,12 +89,17 @@ export default {
   grid-template-columns: 50% 50%;
   grid-template-rows: 50% 50%;
   gap: 5rem;
+  height: 85vh;
 }
 header {
   padding-bottom: 10px;
   margin-top: 1rem;
   margin-bottom: 10px;
   text-align: center;
+}
+footer {
+  text-align: center;
+  margin-bottom: 1rem;
 }
 #m-dash {
   font-size: 3rem;

@@ -1,15 +1,32 @@
 <template>
   <div id="list-container" class="list-group">
-    <h2>The Top 250</h2>
+    <h2 id="top25Header">The Top 250</h2>
     <h3>IMDB's list of the top 250 films in history</h3>
     <!--if faves, change line 7 to faves, line 9 etc-->
     <ul class="list-header">
       <li>About the list:</li>
       <li>- Click a movie to display more info</li>
       <li>- Click the star to favorite a movie</li>
-      <li>- Toggle top 250/faves</li>
+      <form>
+        <div id="radio-container">
+          <div>
+            <input
+              type="radio"
+              id="top250"
+              name="toggle"
+              value="top250"
+              checked
+            />
+            <label for="huey">Top 250</label>
+          </div>
+          <div>
+            <input type="radio" id="faves" name="toggle" value="faves" />
+            <label for="dewey">My Faves</label>
+          </div>
+        </div>
+      </form>
     </ul>
-    <div>
+    <div id="search-container">
       <form @submit="onSubmitSearch">
         <input
           class="search-controls"
@@ -30,16 +47,15 @@
     <ul>
       <li v-if="!isFiltered" v-for="movie in top250" :key="movie">
         <button @click="showMovie(movie)">{{ movie }}</button>
-        <button class="favorite" @click="favorite(movie)">⭐</button>
+        <button class="favorite" @click="favorite(movie)">☆</button>
       </li>
       <li v-if="isFiltered" v-for="movie in filteredList">
         <button @click="showMovie(movie)">{{ movie }}</button>
-        <button class="favorite" @click="favorite(movie)">⭐</button>
+        <button class="favorite" @click="favorite(movie)">☆</button>
       </li>
     </ul>
-    <h2>My Faves</h2>
     <ul>
-      <li v-for="fave in faves" :key="fave">
+      <li v-if="showFaveorites" v-for="fave in faves" :key="fave">
         {{ fave }}
       </li>
     </ul>
@@ -64,6 +80,7 @@ export default {
       clickedMovie: null,
       faves: [],
       searchClicked: false,
+      showFavorites: false,
     };
   },
   mounted() {
@@ -98,6 +115,10 @@ export default {
       this.isFiltered = false;
       this.searchClicked = false;
     },
+    listFaves() {
+      console.log("faves list clicked ");
+      this.showFavorites = true;
+    },
   },
   // for description, check if exists, if not call search api
 };
@@ -120,6 +141,22 @@ export default {
 }
 #clear-button {
   display: inline-block;
+}
+#radio-container {
+  display: flex;
+  flex-direction: row;
+  padding: 0.2rem;
+  justify-content: center;
+  margin: 0.5rem 0 0.5rem 0;
+}
+#faves {
+  margin-left: 15px;
+}
+#search-container {
+  margin-bottom: 1rem;
+}
+#top25Header {
+  margin: 1rem 0 1rem 0;
 }
 .list-header {
   padding: 5px;
