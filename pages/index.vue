@@ -56,8 +56,6 @@ export default {
           this.handleData();
         });
     }
-    this.handleData();
-    this.exportToList();
     console.log("end of index mounted");
   },
   methods: {
@@ -68,6 +66,7 @@ export default {
       for (let i = 0; i < data.length; i++) {
         localStorage.setItem(data[i].id, data[i].title);
       }
+      this.exportToList();
     },
     exportToList() {
       // loop through local storage to get movies
