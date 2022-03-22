@@ -15,8 +15,12 @@
         <MovieCard :movie="clickedMovie" />
       </div>
     </div>
-    <p class="imdbLink">See more at <a href="https://www.imdb.com/">IMDB</a></p>
-    <footer>Made with ♡ by WKCODES 2022</footer>
+    <footer>
+      <p class="imdbLink">
+        See more at <a href="https://www.imdb.com/">IMDB</a>
+      </p>
+      <p>Made with ♡ by WKCODES 2022</p>
+    </footer>
   </div>
 </template>
 
@@ -104,7 +108,10 @@ header {
   text-align: center;
 }
 footer {
+  display: absolute;
+  bottom: 0;
   text-align: center;
+  margin-top: 10px;
   margin-bottom: 1rem;
 }
 .imdbLink {

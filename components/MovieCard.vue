@@ -14,7 +14,7 @@
       Rating: {{ this.retrievedRating }}
     </h2>
     <button v-if="this.movie" @click="getSum" class="summary-button">
-      Show summary
+      Show/Hide summary
     </button>
     <div v-if="showSum" id="summary">
       <p>{{ this.retrievedSummary }}</p>
