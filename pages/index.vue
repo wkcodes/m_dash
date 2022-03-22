@@ -56,6 +56,7 @@ export default {
           this.handleData();
         });
     }
+    this.handleData();
     this.exportToList();
     console.log("end of index mounted");
   },
