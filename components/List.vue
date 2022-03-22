@@ -62,7 +62,7 @@
     </ul>
     <ul>
       <li v-if="faves" v-for="fave in faves" :key="fave">
-        {{ fave }}
+        <button @click="showMovie(fave)">{{ fave }}</button>
       </li>
     </ul>
   </div>
