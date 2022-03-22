@@ -119,7 +119,7 @@ export default {
       if (index > 0) {
         let element = this.top250[index];
         this.top250.splice(index, 1);
-        this.top250.splice(0, 1, element);
+        this.top250.splice(0, 0, element);
       }
       this.faves.push(movie);
       console.log("Favorite button clicked!");
