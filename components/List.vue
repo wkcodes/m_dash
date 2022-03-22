@@ -116,9 +116,11 @@ export default {
     },
     favorite(movie, index) {
       // adds an element to the top of the list
-      let element = this.top250[index];
-      this.top250.splice(index, 1);
-      this.top250.splice(0, 1, element);
+      if (index > 0) {
+        let element = this.top250[index];
+        this.top250.splice(index, 1);
+        this.top250.splice(0, 1, element);
+      }
       this.faves.push(movie);
       console.log("Favorite button clicked!");
       console.log("favorited index is: " + index);
