@@ -162,6 +162,7 @@ export default {
   padding: 5px;
 }
 #clear-button {
+  margin-top: 0.3rem;
   display: inline-block;
 }
 #radio-container {
