@@ -134,4 +134,9 @@ a {
   grid-column-end: 2;
   justify-self: start;
 }
+@media screen and (max-height: 800px) {
+  footer {
+    display: none;
+  }
+}
 </style>

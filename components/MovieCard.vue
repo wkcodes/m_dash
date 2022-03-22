@@ -111,7 +111,7 @@ export default {
 }
 #summary {
   overflow-y: scroll;
-  max-height: 200px;
+  max-height: 100px;
 }
 img {
   height: 400px;
