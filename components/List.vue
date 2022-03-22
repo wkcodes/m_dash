@@ -13,15 +13,21 @@
             <input
               type="radio"
               id="top250"
-              name="toggle"
               value="top250"
-              checked
+              v-model="picked"
+              @click="radioHandler()"
             />
-            <label for="huey">Top 250</label>
+            <label for="top250">Top 250</label>
           </div>
           <div>
-            <input type="radio" id="faves" name="toggle" value="faves" />
-            <label for="dewey">My Faves</label>
+            <input
+              type="radio"
+              id="faves"
+              value="faves"
+              v-model="picked"
+              @click="radioHandler()"
+            />
+            <label for="faves">My Faves</label>
           </div>
         </div>
       </form>
@@ -55,7 +61,7 @@
       </li>
     </ul>
     <ul>
-      <li v-if="showFaveorites" v-for="fave in faves" :key="fave">
+      <li v-if="faves" v-for="fave in faves" :key="fave">
         {{ fave }}
       </li>
     </ul>
@@ -81,6 +87,7 @@ export default {
       faves: [],
       searchClicked: false,
       showFavorites: false,
+      picked: "top250",
     };
   },
   mounted() {
@@ -115,9 +122,16 @@ export default {
       this.isFiltered = false;
       this.searchClicked = false;
     },
-    listFaves() {
-      console.log("faves list clicked ");
-      this.showFavorites = true;
+    radioHandler() {
+      console.log("hello from the radio handle!!!");
+      if (this.picked == "top250") {
+        this.picked = "faves";
+        this.isFiltered = true;
+      } else {
+        this.picked = "top250";
+        this.isFiltered = false;
+      }
+      console.log(this.picked);
     },
   },
   // for description, check if exists, if not call search api
