@@ -1,7 +1,7 @@
 <template>
   <div id="list-container" class="list-group">
     <h2 id="top25Header">The Top 250</h2>
-    <h3>IMDB's list of the top 250 films in history</h3>
+    <h3 id="underline">IMDB's list of the top 250 films in history</h3>
     <!--if faves, change line 7 to faves, line 9 etc-->
     <ul class="list-header">
       <li>About the list:</li>
@@ -179,6 +179,7 @@ export default {
 }
 #top25Header {
   margin: 1rem 0 1rem 0;
+  font-size: 28px;
 }
 .list-header {
   padding: 5px;

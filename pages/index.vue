@@ -2,7 +2,7 @@
   <div>
     <header>
       <h1 id="m-dash">M-Dash</h1>
-      <p>The movie dashboard</p>
+      <h2>The movie dashboard</h2>
     </header>
     <div id="app-wrapper">
       <div id="list">
@@ -110,6 +110,7 @@ a {
   color: goldenrod;
 }
 #m-dash {
+  color: goldenrod;
   font-size: 3rem;
 }
 #list {
