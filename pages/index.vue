@@ -4,14 +4,14 @@
       <h1>M-Dash</h1>
       <p>The movie dashboard</p>
     </header>
-    <div id="app-wrapper" class="center-block">
-      <!--Make this into header component-->
-
-      <div class="row">
+    <div id="app-wrapper">
+      <div id="list">
         <List
           :top250="this.listData"
           @clickEvent="(msg) => (clickedMovie = msg)"
         />
+      </div>
+      <div id="movieCard">
         <MovieCard :movie="clickedMovie" />
       </div>
     </div>
@@ -84,14 +84,25 @@ export default {
   list-style-type: none;
 }
 #app-wrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-left: 20vw;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 50% 50%;
+  gap: 5rem;
 }
 header {
   padding-bottom: 10px;
+  margin-top: 1rem;
   margin-bottom: 10px;
   text-align: center;
+}
+#list {
+  grid-column-start: 1;
+  grid-column-end: 1;
+  justify-self: end;
+}
+#movieCard {
+  grid-column-start: 2;
+  grid-column-end: 2;
+  justify-self: start;
 }
 </style>

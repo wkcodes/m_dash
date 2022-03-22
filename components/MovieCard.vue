@@ -1,9 +1,9 @@
 <template>
   <div id="movie-container">
-    <h1>{{ this.retrievedTitle || "Click a movie" }}</h1>
-    <img :src="`${this.retrievedArt}`" alt="" />
-    <h2>Rating: {{ this.retrievedRating }}</h2>
-    <button class="summary-button">Click for summary</button>
+    <h1 class="cardItem">{{ this.retrievedTitle || "Click a movie" }}</h1>
+    <img class="cardItem" :src="`${this.retrievedArt}`" alt="" />
+    <h2 class="cardItem">Rating: {{ this.retrievedRating }}</h2>
+    <button class="summary-button cardItem">Click for summary</button>
   </div>
 </template>
 
@@ -74,6 +74,9 @@ export default {
 img {
   height: 400px;
   width: 300px;
+}
+.cardItem {
+  padding: 0.2rem;
 }
 .summary-button {
   border: solid;

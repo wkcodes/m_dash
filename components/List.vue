@@ -99,13 +99,11 @@ export default {
 #list-container {
   overflow-y: scroll;
   max-height: 80vh;
-  max-width: 50vw;
+  max-width: 40vw;
   border-style: solid;
   border-width: 7px;
   border-radius: 10px;
   padding: 10px;
-  margin-left: 5vw;
-  margin-right: 10px;
 }
 #search {
   padding: 5px;
