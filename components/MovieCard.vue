@@ -14,7 +14,7 @@
       Rating: {{ this.retrievedRating }}
     </h2>
     <button v-if="this.movie" @click="getSum" class="summary-button">
-      Click for summary
+      Show summary
     </button>
     <div v-if="showSum" id="summary">
       <p>{{ this.retrievedSummary }}</p>
@@ -36,7 +36,7 @@ export default {
       retrievedRating: null,
       retrievedSummary: null,
       movieId: null,
-      showSum: false,
+      showSum: null,
     };
   },
   watch: {
@@ -47,6 +47,9 @@ export default {
   },
   methods: {
     fetchMovieDate() {
+      //clear summary
+      this.retrievedSummary = null;
+      // fetch data
       axios
         .get(`https://imdb-api.com/en/API/Search/k_2uhdy54b/${this.movie}`)
         .then((response) => {
@@ -75,7 +78,11 @@ export default {
         });
     },
     getSum() {
-      this.showSum = true;
+      if (!this.showSum) {
+        this.showSum = true;
+      } else {
+        this.showSum = false;
+      }
       axios
         .get(
           ` https://imdb-api.com/en/API/Wikipedia/k_2uhdy54b/${this.movieId}`
@@ -85,6 +92,7 @@ export default {
           this.retrievedSummary = response.data.plotShort.plainText;
         });
     },
+    clearSum() {},
   },
 };
 </script>
