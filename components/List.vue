@@ -52,6 +52,7 @@
     </div>
     <ul>
       <li v-if="!isFiltered" v-for="movie in top250" :key="movie">
+        <!--if found in favorites, switch to solid star-->
         <button @click="showMovie(movie)">{{ movie }}</button>
         <button class="favorite" @click="favorite(movie)">☆</button>
       </li>

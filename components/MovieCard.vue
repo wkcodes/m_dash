@@ -13,9 +13,12 @@
     <h2 v-if="this.retrievedRating" class="cardItem">
       Rating: {{ this.retrievedRating }}
     </h2>
-    <button v-if="this.retrievedSummary" class="summary-button cardItem">
+    <button v-if="this.movie" @click="getSum" class="summary-button">
       Click for summary
     </button>
+    <div v-if="showSum" id="summary">
+      <p>{{ this.retrievedSummary }}</p>
+    </div>
   </div>
 </template>
 
@@ -33,6 +36,7 @@ export default {
       retrievedRating: null,
       retrievedSummary: null,
       movieId: null,
+      showSum: false,
     };
   },
   watch: {
@@ -70,6 +74,17 @@ export default {
             });
         });
     },
+    getSum() {
+      this.showSum = true;
+      axios
+        .get(
+          ` https://imdb-api.com/en/API/Wikipedia/k_2uhdy54b/${this.movieId}`
+        )
+        .then((response) => {
+          console.log(response);
+          this.retrievedSummary = response.data.plotShort.plainText;
+        });
+    },
   },
 };
 </script>
@@ -86,6 +101,10 @@ export default {
 #cardHeader {
   margin: 0.5rem 0 1rem 0;
 }
+#summary {
+  overflow-y: scroll;
+  max-height: 200px;
+}
 img {
   height: 400px;
   width: 300px;
@@ -98,5 +117,6 @@ img {
   border: solid;
   border-radius: 5px;
   padding: 3px;
+  margin-bottom: 1rem;
 }
 </style>
