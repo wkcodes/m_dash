@@ -1,9 +1,19 @@
 <template>
   <div id="movie-container">
-    <h1 class="cardItem">{{ this.retrievedTitle || "Click a movie" }}</h1>
-    <img class="cardItem" :src="`${this.retrievedArt}`" alt="" />
-    <h2 class="cardItem">Rating: {{ this.retrievedRating }}</h2>
-    <button class="summary-button cardItem">Click for summary</button>
+    <h1 class="cardItem">{{ this.retrievedTitle || "No movie selected" }}</h1>
+    <img
+      v-if="this.retrievedArt"
+      class="cardItem"
+      :src="`${this.retrievedArt}`"
+      alt=""
+    />
+    <img v-else src="../assets/placeholder.png" />
+    <h2 v-if="this.retrievedRating" class="cardItem">
+      Rating: {{ this.retrievedRating }}
+    </h2>
+    <button v-if="this.retrievedSummary" class="summary-button cardItem">
+      Click for summary
+    </button>
   </div>
 </template>
 
@@ -76,6 +86,7 @@ img {
   width: 300px;
 }
 .cardItem {
+  text-align: center;
   padding: 0.2rem;
 }
 .summary-button {

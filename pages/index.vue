@@ -1,7 +1,7 @@
 <template>
   <div>
     <header>
-      <h1>M-Dash</h1>
+      <h1 id="m-dash">M-Dash</h1>
       <p>The movie dashboard</p>
     </header>
     <div id="app-wrapper">
@@ -94,6 +94,9 @@ header {
   margin-top: 1rem;
   margin-bottom: 10px;
   text-align: center;
+}
+#m-dash {
+  font-size: 3rem;
 }
 #list {
   grid-column-start: 1;
