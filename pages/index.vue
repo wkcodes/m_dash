@@ -15,6 +15,7 @@
         <MovieCard :movie="clickedMovie" />
       </div>
     </div>
+    <p class="imdbLink">See more at <a href="https://www.imdb.com/">IMDB</a></p>
     <footer>Made with ♡ by WKCODES 2022</footer>
   </div>
 </template>
@@ -83,6 +84,7 @@ export default {
 <style>
 * {
   list-style-type: none;
+  text-decoration: none;
 }
 #app-wrapper {
   display: grid;
@@ -100,6 +102,12 @@ header {
 footer {
   text-align: center;
   margin-bottom: 1rem;
+}
+.imdbLink {
+  text-align: center;
+}
+a {
+  color: goldenrod;
 }
 #m-dash {
   font-size: 3rem;
