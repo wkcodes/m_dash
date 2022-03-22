@@ -56,7 +56,8 @@
         <button @click="showMovie(movie)">{{ movie }}</button>
         <button class="favorite" @click="favorite(movie)">☆</button>
       </li>
-      <li v-if="isFiltered" v-for="movie in filteredList">
+      <!--add a way to search favorites-->
+      <li v-if="isFiltered && picked == 'top250'" v-for="movie in filteredList">
         <button @click="showMovie(movie)">{{ movie }}</button>
         <button class="favorite" @click="favorite(movie)">☆</button>
       </li>
