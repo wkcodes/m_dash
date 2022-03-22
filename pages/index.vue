@@ -47,16 +47,20 @@ export default {
   mounted() {
     console.log("start of index mounted");
     //check if loacal storage is empty
-    if (localStorage.length === 0) {
-      console.log("no cached data found, calling IMDB API...");
-      axios
-        .get("https://imdb-api.com/en/API/Top250Movies/k_2uhdy54b")
-        .then((response) => {
-          this.rawData = JSON.stringify(response.data.items);
-          this.handleData();
-        });
-    }
+    console.log("calling IMDB API...");
+    axios
+      .get("https://imdb-api.com/en/API/Top250Movies/k_2uhdy54b")
+      .then((response) => {
+        this.rawData = JSON.stringify(response.data.items);
+        this.handleData();
+      });
     console.log("end of index mounted");
+  },
+  updated() {
+    if (this.listData.length === 0) {
+      console.log("empty from watcher");
+      this.$forceUpdate();
+    }
   },
   methods: {
     handleData() {
